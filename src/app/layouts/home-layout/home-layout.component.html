@@ -1,7 +1,9 @@
-<main class="w-full flex gap-3 px-3 min-h-screen">
-	<app-sidebar />
+<main class="w-full flex gap-3 min-h-screen">
+	<div class="relative w-64">
+		<app-sidebar />
+	</div>
 
-	<section class="py-3 flex-1 min-w-0">
+	<section>
 		<router-outlet></router-outlet>
 	</section>
 </main>
