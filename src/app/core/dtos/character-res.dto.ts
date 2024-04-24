@@ -3,8 +3,8 @@ import { CharacterGender, CharacterStatus } from '@app/core/enums';
 export interface ICharacterRes {
 	id: number;
 	name: string;
-	status: string;
-	species: CharacterStatus;
+	status: CharacterStatus;
+	species: string;
 	type: string;
 	gender: CharacterGender;
 	origin: {
