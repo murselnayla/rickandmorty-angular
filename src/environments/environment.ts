@@ -1,6 +1,6 @@
 export const environment = {
 	production: false,
-	apiRoot: 'https://rickandmortyapi.com/api/ ',
+	apiRoot: 'https://rickandmortyapi.com/api/',
 };
 
 export function getEndpoint(route: string): string {
