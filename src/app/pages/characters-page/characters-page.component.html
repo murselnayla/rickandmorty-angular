@@ -47,13 +47,21 @@
 		</div>
 	</div>
 
-	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+	<div
+		*ngIf="characters.length; else emptyPlaceholder"
+		class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
 		<app-character-card
 			*ngFor="let character of characters"
 			[character]="character" />
 	</div>
 
-	<div class="sticky bottom-5 w-max ms-auto">
+	<ng-template #emptyPlaceholder>
+		<app-placeholder-empty text="There are no item to list" />
+	</ng-template>
+
+	<div
+		*ngIf="characters.length"
+		class="sticky bottom-5 w-max ms-auto">
 		<p-paginator
 			styleClass="mt-10 mb-5 shadow-xl !border-2 !bg-gray-300"
 			[first]="1"

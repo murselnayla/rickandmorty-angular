@@ -12,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessageService } from 'primeng/api';
 import { toastHttpError } from '@app/core/utils';
+import { PlaceholderEmptyComponent } from '@components/placeholder-empty/placeholder-empty.component';
 
 interface IQueryParam {
 	page?: number;
@@ -37,6 +38,7 @@ interface IQueryParam {
 		ButtonModule,
 		ProgressSpinnerModule,
 		NgIf,
+		PlaceholderEmptyComponent,
 	],
 })
 export class CharactersPageComponent implements OnInit {
