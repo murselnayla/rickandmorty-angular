@@ -34,10 +34,7 @@ import { ICharactersQuery } from '@app/pages/characters-page/interfaces';
 export class CharactersPageComponent implements OnInit {
 	public isLoading: boolean = false;
 	public characters: ICharacterRes[] = [];
-	public pagination = {
-		page: 0,
-		count: 0,
-	};
+	public totalRecord: number = 0;
 	public query!: ICharactersQuery;
 
 	constructor(
@@ -68,8 +65,7 @@ export class CharactersPageComponent implements OnInit {
 		this.characterService.getAll(query).subscribe({
 			next: (data: PaginationRes<ICharacterRes>) => {
 				this.characters = data.results;
-				this.pagination.page = data.info.pages;
-				this.pagination.count = data.info.count;
+				this.totalRecord = data.info.count;
 				this.isLoading = false;
 				this.cdRef.detectChanges();
 			},

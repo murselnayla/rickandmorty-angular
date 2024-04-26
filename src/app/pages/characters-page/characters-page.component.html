@@ -29,8 +29,7 @@
 		*ngIf="characters.length"
 		class="w-max ms-auto">
 		<app-paginator
-			[totalPages]="pagination.page"
-			[totalCount]="pagination.count"
+			[totalRecord]="totalRecord"
 			(changePage)="onChangePageQuery($event, query)">
 		</app-paginator>
 	</div>

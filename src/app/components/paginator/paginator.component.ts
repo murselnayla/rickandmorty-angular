@@ -10,7 +10,6 @@ import { PaginatorModule } from 'primeng/paginator';
 	imports: [PaginatorModule],
 })
 export class PaginatorComponent {
-	@Input() totalPages!: number;
-	@Input() totalCount!: number;
+	@Input() totalRecord!: number;
 	@Output() changePage = new EventEmitter<number>();
 }
