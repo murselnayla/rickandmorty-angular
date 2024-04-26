@@ -26,10 +26,11 @@
 	</ng-template>
 
 	<div
-		*ngIf="characters.length && !isLoading"
+		*ngIf="characters.length"
 		class="w-max ms-auto">
 		<app-paginator
-			[totalPages]="totalPages"
+			[totalPages]="pagination.page"
+			[totalCount]="pagination.count"
 			(changePage)="onChangePageQuery($event, query)">
 		</app-paginator>
 	</div>
