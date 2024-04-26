@@ -7,7 +7,7 @@ html {
 }
 
 * {
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 // Loader
@@ -39,5 +39,20 @@ html {
 //.progress-spinner .p-progress-spinner-circle {
 //  stroke: yellow !important;
 //}
-
 // E: Loader
+
+
+
+// Custom scrollbar
+.custom-scrollbar *::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar *::-webkit-scrollbar-track {
+  background: #ececec;
+  border-radius: 3px;
+}
+.custom-scrollbar *::-webkit-scrollbar-thumb {
+  background: #afc6ec;
+  border-radius: 3px;
+}
+// E: Custom scrollbar

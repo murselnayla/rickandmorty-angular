@@ -1,0 +1,60 @@
+<div
+	*ngIf="isLoading"
+	class="progress-spinner">
+	<p-progressSpinner strokeWidth="4"></p-progressSpinner>
+</div>
+
+<div class="pt-5">
+	<div
+		*ngIf="character; else emptyPlaceholder"
+		class="border bg-white overflow-hidden rounded-lg shadow-lg w-max">
+		<div class="flex">
+			<img
+				class="object-cover w-96"
+				[src]="character.image" />
+			<div class="flex-1 min-w-[500px] p-12">
+				<div class="text-3xl">{{ character.name }}</div>
+				<div class="text-gray-400">{{ character.created | date: 'longDate' }}</div>
+				<p-divider></p-divider>
+				<ul class="flex flex-col gap-3">
+					<li>
+						<span class="inline-block w-28 text-gray-400">Gender:</span>
+						<span class="text-gray-800">{{ character.gender }}</span>
+					</li>
+					<li>
+						<span class="inline-block w-28 text-gray-400">Species:</span>
+						<span class="text-gray-800">{{ character.species }}</span>
+					</li>
+					<li>
+						<span class="inline-block w-28 text-gray-400">Status:</span>
+						<span class="text-gray-800">{{ character.status }}</span>
+					</li>
+					<li>
+						<span class="inline-block w-28 text-gray-400">Type:</span>
+						<span class="text-gray-800">{{ character.type || 'N/A' }}</span>
+					</li>
+					<li>
+						<span class="inline-block w-28 text-gray-400">Origin:</span>
+						<span class="text-gray-800">{{ character.origin.name }}</span>
+					</li>
+					<li>
+						<span class="inline-block w-28 text-gray-400">Location:</span>
+						<span class="text-gray-800">{{ character.location.name }}</span>
+					</li>
+					<li>
+						<span class="inline-block w-28 text-gray-400 mb-3">Episodes:</span>
+						<p-listbox
+							class="custom-scrollbar"
+							[readonly]="true"
+							[options]="getEpisodeLabel(character.episode)"
+							[listStyle]="{ 'max-height': '120px' }"></p-listbox>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<ng-template #emptyPlaceholder>
+		<app-placeholder-empty />
+	</ng-template>
+</div>

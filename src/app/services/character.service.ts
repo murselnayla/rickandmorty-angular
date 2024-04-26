@@ -20,7 +20,7 @@ export class CharacterService {
 			);
 	}
 
-	public get(id: number): Observable<ICharacterRes> {
+	public get(id: string): Observable<ICharacterRes> {
 		const path = `character/${id}`;
 		return this.http.get<ICharacterRes>(getEndpoint(path)).pipe(
 			retry(1),
