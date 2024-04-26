@@ -83,6 +83,7 @@ export class CharactersPageComponent implements OnInit {
 	}
 
 	public onClickSearch(query: ICharactersQuery) {
+		this.query.page = 1;
 		this.getCharacters(query);
 	}
 

@@ -26,7 +26,7 @@
 	</ng-template>
 
 	<div
-		*ngIf="characters.length"
+		*ngIf="characters.length && !isLoading"
 		class="w-max ms-auto">
 		<app-paginator
 			[totalPages]="totalPages"
