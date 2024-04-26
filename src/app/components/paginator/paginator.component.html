@@ -1,0 +1,8 @@
+<p-paginator
+	styleClass="my-10 shadow-xl !border !border-gray-400"
+	currentPageReportTemplate="{first} - {last} of {totalRecords}"
+	[rows]="20"
+	[showCurrentPageReport]="true"
+	[totalRecords]="totalPages * 20"
+	(onPageChange)="changePage.emit($event.page + 1)">
+</p-paginator>
