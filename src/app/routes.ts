@@ -10,6 +10,11 @@ export const ROUTES: Routes = [
 		component: HomeLayoutComponent,
 		children: [
 			{
+				path: '',
+				redirectTo: 'home',
+				pathMatch: 'full',
+			},
+			{
 				path: 'home',
 				component: HomePageComponent,
 				title: 'Home',
