@@ -1,27 +1,17 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { CharacterCardComponent } from '@components/character-card/character-card.component';
-import { CharacterService } from '@app/services';
+import { CharacterCardComponent } from '@app/pages/characters-page/components/character-card/character-card.component';
+import { CharacterService } from 'src/app/core/services';
 import { ICharacterRes, PaginationRes } from '@app/core/dtos';
 import { NgForOf, NgIf } from '@angular/common';
-import { PaginatorModule } from 'primeng/paginator';
-import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
-import { CHARACTER_STATUS, CHARACTER_GENDER } from '@app/core/constants';
-import { IDropdownItem } from '@app/core/interfaces';
 import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessageService } from 'primeng/api';
 import { toastHttpError } from '@app/core/utils';
 import { PlaceholderEmptyComponent } from '@components/placeholder-empty/placeholder-empty.component';
-
-interface IQueryParam {
-	page?: number;
-	name?: string;
-	status?: string;
-	species?: string;
-	type?: string;
-	gender?: string;
-}
+import { PaginatorComponent } from '@components/paginator/paginator.component';
+import { CharactersSearchComponent } from '@app/pages/characters-page/components/characters-search/characters-search.component';
+import { ICharactersQuery } from '@app/pages/characters-page/interfaces';
 
 @Component({
 	selector: 'app-characters-page',
@@ -30,38 +20,36 @@ interface IQueryParam {
 	styleUrls: ['./characters-page.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
+		CharactersSearchComponent,
 		CharacterCardComponent,
+		PlaceholderEmptyComponent,
+		PaginatorComponent,
+		ProgressSpinnerModule,
 		NgForOf,
-		PaginatorModule,
-		CardModule,
+		NgIf,
 		InputTextModule,
 		ButtonModule,
-		ProgressSpinnerModule,
-		NgIf,
-		PlaceholderEmptyComponent,
 	],
 })
 export class CharactersPageComponent implements OnInit {
 	public isLoading: boolean = false;
 	public characters: ICharacterRes[] = [];
-	public CHARACTER_STATUS: IDropdownItem[] = CHARACTER_STATUS;
-	public CHARACTER_GENDER: IDropdownItem[] = CHARACTER_GENDER;
 	public totalPages = 0;
-	public query!: IQueryParam;
+	public query!: ICharactersQuery;
 
 	constructor(
 		private characterService: CharacterService,
 		private messageService: MessageService,
 		private cdRef: ChangeDetectorRef,
 	) {
-		this.setQuery();
+		this.setDefaultQuery();
 	}
 
 	ngOnInit() {
 		this.getCharacters(this.query);
 	}
 
-	private setQuery() {
+	private setDefaultQuery() {
 		this.query = {
 			page: 1,
 			name: '',
@@ -72,7 +60,7 @@ export class CharactersPageComponent implements OnInit {
 		};
 	}
 
-	private getCharacters(query?: any) {
+	private getCharacters(query?: ICharactersQuery) {
 		this.isLoading = true;
 		this.characterService.getAll(query).subscribe({
 			next: (data: PaginationRes<ICharacterRes>) => {
@@ -89,17 +77,17 @@ export class CharactersPageComponent implements OnInit {
 		});
 	}
 
-	public onChangePageQuery(event: any, query: any) {
-		query.page = event.page + 1;
+	public onChangePageQuery(page: number, query: ICharactersQuery) {
+		query.page = page;
 		this.getCharacters(query);
 	}
 
-	public onClickSearch(query: any) {
+	public onClickSearch(query: ICharactersQuery) {
 		this.getCharacters(query);
 	}
 
 	public onClickReset() {
-		this.setQuery();
-		this.getCharacters();
+		this.setDefaultQuery();
+		this.getCharacters(this.query);
 	}
 }

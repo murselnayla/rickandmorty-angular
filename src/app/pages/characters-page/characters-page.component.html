@@ -5,46 +5,12 @@
 </div>
 
 <div class="pt-5">
-	<div class="bg-white border p-7 mb-5 rounded-lg shadow-sm">
-		<div class="flex flex-wrap justify-end gap-2 text-p">
-			<input
-				type="text"
-				pInputText
-				placeholder="Name"
-				[(ngModel)]="query.name"
-				(keyup.enter)="onClickSearch(query)" />
-			<input
-				type="text"
-				pInputText
-				placeholder="Type"
-				[(ngModel)]="query.type"
-				(keyup.enter)="onClickSearch(query)" />
-			<p-dropdown
-				styleClass="w-52"
-				optionLabel="label"
-				optionValue="value"
-				placeholder="Status"
-				[options]="CHARACTER_STATUS"
-				[showClear]="true"
-				[(ngModel)]="query.status"></p-dropdown>
-			<p-dropdown
-				styleClass="w-52"
-				optionLabel="label"
-				optionValue="value"
-				placeholder="Gender"
-				[options]="CHARACTER_GENDER"
-				[showClear]="true"
-				[(ngModel)]="query.gender"></p-dropdown>
-			<p-button
-				label="Search"
-				icon="pi pi-search"
-				(click)="onClickSearch(query)"></p-button>
-			<button
-				pButton
-				icon="pi pi-trash"
-				class="p-button-danger"
-				(click)="onClickReset()"></button>
-		</div>
+	<div class="mb-5">
+		<app-characters-search
+			[query]="query"
+			(clickSearch)="onClickSearch($event)"
+			(clickReset)="onClickReset()">
+		</app-characters-search>
 	</div>
 
 	<div
@@ -62,11 +28,9 @@
 	<div
 		*ngIf="characters.length"
 		class="w-max ms-auto">
-		<p-paginator
-			styleClass="my-10 shadow-xl !border !border-gray-400"
-			[first]="1"
-			[rows]="20"
-			[totalRecords]="totalPages * 20"
-			(onPageChange)="onChangePageQuery($event, query)"></p-paginator>
+		<app-paginator
+			[totalPages]="totalPages"
+			(changePage)="onChangePageQuery($event, query)">
+		</app-paginator>
 	</div>
 </div>

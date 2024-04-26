@@ -1,0 +1,41 @@
+<div class="bg-white border p-7 rounded-lg shadow-sm">
+	<div class="flex flex-wrap justify-end gap-2 text-p">
+		<input
+			type="text"
+			pInputText
+			placeholder="Name"
+			[(ngModel)]="query.name"
+			(keyup.enter)="clickSearch.emit(query)" />
+		<input
+			type="text"
+			pInputText
+			placeholder="Type"
+			[(ngModel)]="query.type"
+			(keyup.enter)="clickSearch.emit(query)" />
+		<p-dropdown
+			styleClass="w-52"
+			optionLabel="label"
+			optionValue="value"
+			placeholder="Status"
+			[options]="CHARACTER_STATUS"
+			[showClear]="true"
+			[(ngModel)]="query.status"></p-dropdown>
+		<p-dropdown
+			styleClass="w-52"
+			optionLabel="label"
+			optionValue="value"
+			placeholder="Gender"
+			[options]="CHARACTER_GENDER"
+			[showClear]="true"
+			[(ngModel)]="query.gender"></p-dropdown>
+		<p-button
+			label="Search"
+			icon="pi pi-search"
+			(click)="clickSearch.emit(query)"></p-button>
+		<button
+			pButton
+			icon="pi pi-trash"
+			class="p-button-danger"
+			(click)="clickReset.emit()"></button>
+	</div>
+</div>

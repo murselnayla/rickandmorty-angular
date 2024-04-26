@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { CharacterCardComponent } from '@components/character-card/character-card.component';
-import { CharacterService } from '@app/services';
+import { CharacterCardComponent } from '@app/pages/characters-page/components/character-card/character-card.component';
+import { CharacterService } from 'src/app/core/services';
 import { ICharacterRes } from '@app/core/dtos';
 import { DatePipe, NgForOf, NgIf } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
